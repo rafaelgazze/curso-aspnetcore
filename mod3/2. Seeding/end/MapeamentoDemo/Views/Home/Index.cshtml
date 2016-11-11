@@ -1,0 +1,39 @@
+﻿@model MapeamentoDemo.Models.AlunosCursosViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Alunos</h2>
+        <ul id="lista-alunos">
+            @foreach (var aluno in Model.Alunos)
+            {
+                <li>@aluno.Nome</li>
+            }
+        </ul>
+        <label>Novo aluno</label>
+        <input type="text" id="nome" name="nome" />
+        <button id="salvar-aluno">Salvar</button>
+    </div>
+    <div class="col-md-6">
+        <h2>Cursos</h2>
+        <ul>
+            @foreach (var curso in Model.Cursos)
+            {
+                <li>@curso.Nome</li>
+            }
+        </ul>
+    </div>
+</div>
+@section scripts {
+    <script>
+        $("#salvar-aluno").click(function () {
+            var nome = $("#nome").val();
+            $.post("@Url.Action("AdicionarAluno")", { nome: nome })
+             .done(function () {
+                 $("#lista-alunos").append("<li>" + nome + "</li>");
+             });
+        })
+    </script>
+}
