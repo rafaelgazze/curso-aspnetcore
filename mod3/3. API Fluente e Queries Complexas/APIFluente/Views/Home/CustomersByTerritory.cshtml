@@ -1,0 +1,18 @@
+﻿@model IEnumerable<APIFluente.ViewModels.CustomersByTerritory>
+
+<h1>Customers by Territory</h1>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <strong>@item.TerritoryID</strong>
+            <ul>
+                @foreach (var customer in item.Customers)
+                {
+                    <li>@customer.CustomerID - @customer.Person?.LastName</li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<APIFluente.Models.Person>
+
+<h1>People</h1>
+<ul>
+    @foreach(var person in Model)
+    {
+        <li>@person.LastName.ToUpper(), @person.FirstName</li>
+    }
+</ul>
